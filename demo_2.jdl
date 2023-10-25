@@ -1,0 +1,15 @@
+
+entity Medicamento {
+  nombre String required
+  descripcion String
+  precio Double required
+}
+
+entity Inventario {
+  cantidadStock Integer required
+}
+
+relationship OneToOne {
+  Medicamento{inventario} to Inventario
+}
+
