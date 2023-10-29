@@ -1,0 +1,27 @@
+{
+  "famarticav2App": {
+    "medicamento": {
+      "home": {
+        "title": "Medicamentos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Medicamento",
+        "createOrEditLabel": "Crear o editar Medicamento",
+        "notFound": "Ningún Medicamentos encontrado"
+      },
+      "created": "Un nuevo Medicamento ha sido creado con el identificador {{ param }}",
+      "updated": "Un Medicamento ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Medicamento ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Medicamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Medicamento"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "precio": "Precio",
+      "inventario": "Inventario"
+    }
+  }
+}

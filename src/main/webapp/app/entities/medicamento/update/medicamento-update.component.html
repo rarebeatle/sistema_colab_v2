@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-medicamento-heading"
+        data-cy="MedicamentoCreateUpdateHeading"
+        jhiTranslate="famarticav2App.medicamento.home.createOrEditLabel"
+      >
+        __jhiTransformTranslate__('famarticav2App.medicamento.home.createOrEditLabel')
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="famarticav2App.medicamento.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required"
+              >__jhiTransformTranslate__('entity.validation.required')</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="famarticav2App.medicamento.descripcion" for="field_descripcion">Descripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="descripcion"
+            id="field_descripcion"
+            data-cy="descripcion"
+            formControlName="descripcion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="famarticav2App.medicamento.precio" for="field_precio">Precio</label>
+          <input type="number" class="form-control" name="precio" id="field_precio" data-cy="precio" formControlName="precio" />
+          <div *ngIf="editForm.get('precio')!.invalid && (editForm.get('precio')!.dirty || editForm.get('precio')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('precio')?.errors?.required" jhiTranslate="entity.validation.required"
+              >__jhiTransformTranslate__('entity.validation.required')</small
+            >
+            <small class="form-text text-danger" [hidden]="!editForm.get('precio')?.errors?.number" jhiTranslate="entity.validation.number"
+              >__jhiTransformTranslate__('entity.validation.number')</small
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="famarticav2App.medicamento.inventario" for="field_inventario"
+            >__jhiTransformTranslate__('famarticav2App.medicamento.inventario')</label
+          >
+          <select
+            class="form-control"
+            id="field_inventario"
+            data-cy="inventario"
+            name="inventario"
+            formControlName="inventario"
+            [compareWith]="compareInventario"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="inventarioOption" *ngFor="let inventarioOption of inventariosCollection">{{ inventarioOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel"
+            >__jhiTransformTranslate__('entity.action.cancel')</span
+          >
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save"
+            >__jhiTransformTranslate__('entity.action.save')</span
+          >
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

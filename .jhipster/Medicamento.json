@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20231025190221",
+  "entityTableName": "medicamento",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "precio",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Medicamento",
+  "relationships": [
+    {
+      "otherEntityName": "inventario",
+      "relationshipName": "inventario",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

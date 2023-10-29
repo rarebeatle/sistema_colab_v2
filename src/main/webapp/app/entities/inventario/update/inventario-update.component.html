@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-inventario-heading"
+        data-cy="InventarioCreateUpdateHeading"
+        jhiTranslate="famarticav2App.inventario.home.createOrEditLabel"
+      >
+        __jhiTransformTranslate__('famarticav2App.inventario.home.createOrEditLabel')
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="famarticav2App.inventario.cantidadStock" for="field_cantidadStock">Cantidad Stock</label>
+          <input
+            type="number"
+            class="form-control"
+            name="cantidadStock"
+            id="field_cantidadStock"
+            data-cy="cantidadStock"
+            formControlName="cantidadStock"
+          />
+          <div
+            *ngIf="
+              editForm.get('cantidadStock')!.invalid && (editForm.get('cantidadStock')!.dirty || editForm.get('cantidadStock')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('cantidadStock')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+              >__jhiTransformTranslate__('entity.validation.required')</small
+            >
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('cantidadStock')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+              >__jhiTransformTranslate__('entity.validation.number')</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel"
+            >__jhiTransformTranslate__('entity.action.cancel')</span
+          >
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save"
+            >__jhiTransformTranslate__('entity.action.save')</span
+          >
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

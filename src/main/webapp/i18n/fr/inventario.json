@@ -1,0 +1,25 @@
+{
+  "famarticav2App": {
+    "inventario": {
+      "home": {
+        "title": "Inventarios",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Inventario",
+        "createOrEditLabel": "Créer ou éditer un Inventario",
+        "notFound": "Aucun Inventario trouvé"
+      },
+      "created": "Un nouveau Inventario a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Inventario avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Inventario avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Inventario {{ id }} ?"
+      },
+      "detail": {
+        "title": "Inventario"
+      },
+      "id": "ID",
+      "cantidadStock": "Cantidad Stock",
+      "medicamento": "Medicamento"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+<div>
+  <h2 id="page-heading" data-cy="MedicamentoHeading">
+    <span jhiTranslate="famarticav2App.medicamento.home.title">__jhiTransformTranslate__('famarticav2App.medicamento.home.title')</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="famarticav2App.medicamento.home.refreshListLabel"
+          >__jhiTransformTranslate__('famarticav2App.medicamento.home.refreshListLabel')</span
+        >
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-medicamento"
+        [routerLink]="['/medicamento/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="famarticav2App.medicamento.home.createLabel"
+          >__jhiTransformTranslate__('famarticav2App.medicamento.home.createLabel')</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="medicamentos?.length === 0">
+    <span jhiTranslate="famarticav2App.medicamento.home.notFound"
+      >__jhiTransformTranslate__('famarticav2App.medicamento.home.notFound')</span
+    >
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="medicamentos && medicamentos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nombre">
+            <div class="d-flex">
+              <span jhiTranslate="famarticav2App.medicamento.nombre">__jhiTransformTranslate__('famarticav2App.medicamento.nombre')</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="descripcion">
+            <div class="d-flex">
+              <span jhiTranslate="famarticav2App.medicamento.descripcion"
+                >__jhiTransformTranslate__('famarticav2App.medicamento.descripcion')</span
+              >
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="precio">
+            <div class="d-flex">
+              <span jhiTranslate="famarticav2App.medicamento.precio">__jhiTransformTranslate__('famarticav2App.medicamento.precio')</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="inventario.id">
+            <div class="d-flex">
+              <span jhiTranslate="famarticav2App.medicamento.inventario"
+                >__jhiTransformTranslate__('famarticav2App.medicamento.inventario')</span
+              >
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicamento of medicamentos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/medicamento', medicamento.id, 'view']">{{ medicamento.id }}</a>
+          </td>
+          <td>{{ medicamento.nombre }}</td>
+          <td>{{ medicamento.descripcion }}</td>
+          <td>{{ medicamento.precio }}</td>
+          <td>
+            <div *ngIf="medicamento.inventario">
+              <a [routerLink]="['/inventario', medicamento.inventario.id, 'view']">{{ medicamento.inventario.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/medicamento', medicamento.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">__jhiTransformTranslate__('entity.action.view')</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/medicamento', medicamento.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">__jhiTransformTranslate__('entity.action.edit')</span>
+              </button>
+
+              <button type="submit" (click)="delete(medicamento)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete"
+                  >__jhiTransformTranslate__('entity.action.delete')</span
+                >
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

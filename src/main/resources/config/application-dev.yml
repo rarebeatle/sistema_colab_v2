@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/famarticav2?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: dbc:mysql://db-farmatica.cydpsdiep89l.us-west-2.rds.amazonaws.com/famarticav2?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    username: adimin
+    password: adminadmin
     hikari:
       poolName: Hikari
       auto-commit: false

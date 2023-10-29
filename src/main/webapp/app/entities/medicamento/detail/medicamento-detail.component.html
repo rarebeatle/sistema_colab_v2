@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="medicamento">
+      <h2 data-cy="medicamentoDetailsHeading">
+        <span jhiTranslate="famarticav2App.medicamento.detail.title"
+          >__jhiTransformTranslate__('famarticav2App.medicamento.detail.title')</span
+        >
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span></dt>
+        <dd>
+          <span>{{ medicamento.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="famarticav2App.medicamento.nombre">__jhiTransformTranslate__('famarticav2App.medicamento.nombre')</span>
+        </dt>
+        <dd>
+          <span>{{ medicamento.nombre }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="famarticav2App.medicamento.descripcion"
+            >__jhiTransformTranslate__('famarticav2App.medicamento.descripcion')</span
+          >
+        </dt>
+        <dd>
+          <span>{{ medicamento.descripcion }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="famarticav2App.medicamento.precio">__jhiTransformTranslate__('famarticav2App.medicamento.precio')</span>
+        </dt>
+        <dd>
+          <span>{{ medicamento.precio }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="famarticav2App.medicamento.inventario"
+            >__jhiTransformTranslate__('famarticav2App.medicamento.inventario')</span
+          >
+        </dt>
+        <dd>
+          <div *ngIf="medicamento.inventario">
+            <a [routerLink]="['/inventario', medicamento.inventario.id, 'view']">{{ medicamento.inventario.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"
+          >__jhiTransformTranslate__('entity.action.back')</span
+        >
+      </button>
+
+      <button type="button" [routerLink]="['/medicamento', medicamento.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"
+          >__jhiTransformTranslate__('entity.action.edit')</span
+        >
+      </button>
+    </div>
+  </div>
+</div>

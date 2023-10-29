@@ -1,0 +1,96 @@
+<div>
+  <h2 id="page-heading" data-cy="InventarioHeading">
+    <span jhiTranslate="famarticav2App.inventario.home.title">__jhiTransformTranslate__('famarticav2App.inventario.home.title')</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="famarticav2App.inventario.home.refreshListLabel"
+          >__jhiTransformTranslate__('famarticav2App.inventario.home.refreshListLabel')</span
+        >
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-inventario"
+        [routerLink]="['/inventario/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="famarticav2App.inventario.home.createLabel"
+          >__jhiTransformTranslate__('famarticav2App.inventario.home.createLabel')</span
+        >
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="inventarios?.length === 0">
+    <span jhiTranslate="famarticav2App.inventario.home.notFound">__jhiTransformTranslate__('famarticav2App.inventario.home.notFound')</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="inventarios && inventarios.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cantidadStock">
+            <div class="d-flex">
+              <span jhiTranslate="famarticav2App.inventario.cantidadStock"
+                >__jhiTransformTranslate__('famarticav2App.inventario.cantidadStock')</span
+              >
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inventario of inventarios; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/inventario', inventario.id, 'view']">{{ inventario.id }}</a>
+          </td>
+          <td>{{ inventario.cantidadStock }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/inventario', inventario.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">__jhiTransformTranslate__('entity.action.view')</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/inventario', inventario.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">__jhiTransformTranslate__('entity.action.edit')</span>
+              </button>
+
+              <button type="submit" (click)="delete(inventario)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete"
+                  >__jhiTransformTranslate__('entity.action.delete')</span
+                >
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

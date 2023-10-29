@@ -1,0 +1,15 @@
+{
+  "applications": "*",
+  "changelogDate": "20231025190321",
+  "entityTableName": "inventario",
+  "fields": [
+    {
+      "fieldName": "cantidadStock",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Inventario",
+  "relationships": [],
+  "searchEngine": "no"
+}
