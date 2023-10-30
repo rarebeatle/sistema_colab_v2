@@ -1,22 +1,22 @@
 import { IInventario, NewInventario } from './inventario.model';
 
 export const sampleWithRequiredData: IInventario = {
-  id: 30835,
-  cantidadStock: 16239,
+  id: 16136,
+  cantidadStock: 22402,
 };
 
 export const sampleWithPartialData: IInventario = {
-  id: 13821,
-  cantidadStock: 25492,
+  id: 12360,
+  cantidadStock: 30835,
 };
 
 export const sampleWithFullData: IInventario = {
-  id: 25073,
-  cantidadStock: 28759,
+  id: 16239,
+  cantidadStock: 13821,
 };
 
 export const sampleWithNewData: NewInventario = {
-  cantidadStock: 19660,
+  cantidadStock: 25492,
   id: null,
 };
 

@@ -19,6 +19,7 @@ type InventarioFormDefaults = Pick<NewInventario, 'id'>;
 type InventarioFormGroupContent = {
   id: FormControl<IInventario['id'] | NewInventario['id']>;
   cantidadStock: FormControl<IInventario['cantidadStock']>;
+  medicamento: FormControl<IInventario['medicamento']>;
 };
 
 export type InventarioFormGroup = FormGroup<InventarioFormGroupContent>;
@@ -41,6 +42,7 @@ export class InventarioFormService {
       cantidadStock: new FormControl(inventarioRawValue.cantidadStock, {
         validators: [Validators.required],
       }),
+      medicamento: new FormControl(inventarioRawValue.medicamento),
     });
   }
 

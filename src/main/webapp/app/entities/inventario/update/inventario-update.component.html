@@ -46,6 +46,25 @@
             >
           </div>
         </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="famarticav2App.inventario.medicamento" for="field_medicamento"
+            >__jhiTransformTranslate__('famarticav2App.inventario.medicamento')</label
+          >
+          <select
+            class="form-control"
+            id="field_medicamento"
+            data-cy="medicamento"
+            name="medicamento"
+            formControlName="medicamento"
+            [compareWith]="compareMedicamento"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="medicamentoOption" *ngFor="let medicamentoOption of medicamentosCollection">
+              {{ medicamentoOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>

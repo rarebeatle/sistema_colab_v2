@@ -23,7 +23,6 @@ describe('Medicamento Form Service', () => {
             nombre: expect.any(Object),
             descripcion: expect.any(Object),
             precio: expect.any(Object),
-            inventario: expect.any(Object),
           }),
         );
       });
@@ -37,7 +36,6 @@ describe('Medicamento Form Service', () => {
             nombre: expect.any(Object),
             descripcion: expect.any(Object),
             precio: expect.any(Object),
-            inventario: expect.any(Object),
           }),
         );
       });

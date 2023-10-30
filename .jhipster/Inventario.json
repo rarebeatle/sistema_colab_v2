@@ -10,6 +10,13 @@
     }
   ],
   "name": "Inventario",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "medicamento",
+      "relationshipName": "medicamento",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
   "searchEngine": "no"
 }

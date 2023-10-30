@@ -28,7 +28,8 @@ public class Inventario implements Serializable {
     private Integer cantidadStock;
 
     @JsonIgnoreProperties(value = { "inventario" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "inventario")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(unique = true)
     private Medicamento medicamento;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -64,12 +65,6 @@ public class Inventario implements Serializable {
     }
 
     public void setMedicamento(Medicamento medicamento) {
-        if (this.medicamento != null) {
-            this.medicamento.setInventario(null);
-        }
-        if (medicamento != null) {
-            medicamento.setInventario(this);
-        }
         this.medicamento = medicamento;
     }
 

@@ -19,13 +19,6 @@
     }
   ],
   "name": "Medicamento",
-  "relationships": [
-    {
-      "otherEntityName": "inventario",
-      "relationshipName": "inventario",
-      "relationshipSide": "left",
-      "relationshipType": "one-to-one"
-    }
-  ],
+  "relationships": [],
   "searchEngine": "no"
 }

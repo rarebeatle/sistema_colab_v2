@@ -50,6 +50,14 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="medicamento.id">
+            <div class="d-flex">
+              <span jhiTranslate="famarticav2App.inventario.medicamento"
+                >__jhiTransformTranslate__('famarticav2App.inventario.medicamento')</span
+              >
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -59,6 +67,11 @@
             <a [routerLink]="['/inventario', inventario.id, 'view']">{{ inventario.id }}</a>
           </td>
           <td>{{ inventario.cantidadStock }}</td>
+          <td>
+            <div *ngIf="inventario.medicamento">
+              <a [routerLink]="['/medicamento', inventario.medicamento.id, 'view']">{{ inventario.medicamento.id }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

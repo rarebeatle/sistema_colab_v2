@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -148,10 +149,18 @@ public class MedicamentoResource {
     /**
      * {@code GET  /medicamentos} : get all the medicamentos.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of medicamentos in body.
      */
     @GetMapping("/medicamentos")
-    public List<Medicamento> getAllMedicamentos() {
+    public List<Medicamento> getAllMedicamentos(@RequestParam(required = false) String filter) {
+        if ("inventario-is-null".equals(filter)) {
+            log.debug("REST request to get all Medicamentos where inventario is null");
+            return StreamSupport
+                .stream(medicamentoRepository.findAll().spliterator(), false)
+                .filter(medicamento -> medicamento.getInventario() == null)
+                .toList();
+        }
         log.debug("REST request to get all Medicamentos");
         return medicamentoRepository.findAll();
     }

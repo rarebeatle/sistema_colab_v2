@@ -21,7 +21,6 @@ type MedicamentoFormGroupContent = {
   nombre: FormControl<IMedicamento['nombre']>;
   descripcion: FormControl<IMedicamento['descripcion']>;
   precio: FormControl<IMedicamento['precio']>;
-  inventario: FormControl<IMedicamento['inventario']>;
 };
 
 export type MedicamentoFormGroup = FormGroup<MedicamentoFormGroupContent>;
@@ -48,7 +47,6 @@ export class MedicamentoFormService {
       precio: new FormControl(medicamentoRawValue.precio, {
         validators: [Validators.required],
       }),
-      inventario: new FormControl(medicamentoRawValue.inventario),
     });
   }
 

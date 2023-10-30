@@ -38,16 +38,6 @@
         <dd>
           <span>{{ medicamento.precio }}</span>
         </dd>
-        <dt>
-          <span jhiTranslate="famarticav2App.medicamento.inventario"
-            >__jhiTransformTranslate__('famarticav2App.medicamento.inventario')</span
-          >
-        </dt>
-        <dd>
-          <div *ngIf="medicamento.inventario">
-            <a [routerLink]="['/inventario', medicamento.inventario.id, 'view']">{{ medicamento.inventario.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

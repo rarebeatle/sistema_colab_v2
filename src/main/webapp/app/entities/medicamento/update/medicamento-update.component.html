@@ -51,23 +51,6 @@
             >
           </div>
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" jhiTranslate="famarticav2App.medicamento.inventario" for="field_inventario"
-            >__jhiTransformTranslate__('famarticav2App.medicamento.inventario')</label
-          >
-          <select
-            class="form-control"
-            id="field_inventario"
-            data-cy="inventario"
-            name="inventario"
-            formControlName="inventario"
-            [compareWith]="compareInventario"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="inventarioOption" *ngFor="let inventarioOption of inventariosCollection">{{ inventarioOption.id }}</option>
-          </select>
-        </div>
       </div>
 
       <div>

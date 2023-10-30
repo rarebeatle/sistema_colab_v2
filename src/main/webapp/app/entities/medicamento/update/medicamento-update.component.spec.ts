@@ -6,8 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject, from } from 'rxjs';
 
-import { IInventario } from 'app/entities/inventario/inventario.model';
-import { InventarioService } from 'app/entities/inventario/service/inventario.service';
 import { MedicamentoService } from '../service/medicamento.service';
 import { IMedicamento } from '../medicamento.model';
 import { MedicamentoFormService } from './medicamento-form.service';
@@ -20,7 +18,6 @@ describe('Medicamento Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let medicamentoFormService: MedicamentoFormService;
   let medicamentoService: MedicamentoService;
-  let inventarioService: InventarioService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,39 +39,17 @@ describe('Medicamento Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     medicamentoFormService = TestBed.inject(MedicamentoFormService);
     medicamentoService = TestBed.inject(MedicamentoService);
-    inventarioService = TestBed.inject(InventarioService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call inventario query and add missing value', () => {
-      const medicamento: IMedicamento = { id: 456 };
-      const inventario: IInventario = { id: 16136 };
-      medicamento.inventario = inventario;
-
-      const inventarioCollection: IInventario[] = [{ id: 22402 }];
-      jest.spyOn(inventarioService, 'query').mockReturnValue(of(new HttpResponse({ body: inventarioCollection })));
-      const expectedCollection: IInventario[] = [inventario, ...inventarioCollection];
-      jest.spyOn(inventarioService, 'addInventarioToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ medicamento });
-      comp.ngOnInit();
-
-      expect(inventarioService.query).toHaveBeenCalled();
-      expect(inventarioService.addInventarioToCollectionIfMissing).toHaveBeenCalledWith(inventarioCollection, inventario);
-      expect(comp.inventariosCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const medicamento: IMedicamento = { id: 456 };
-      const inventario: IInventario = { id: 12360 };
-      medicamento.inventario = inventario;
 
       activatedRoute.data = of({ medicamento });
       comp.ngOnInit();
 
-      expect(comp.inventariosCollection).toContain(inventario);
       expect(comp.medicamento).toEqual(medicamento);
     });
   });
@@ -144,18 +119,6 @@ describe('Medicamento Management Update Component', () => {
       expect(medicamentoService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Compare relationships', () => {
-    describe('compareInventario', () => {
-      it('Should forward to inventarioService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(inventarioService, 'compareInventario');
-        comp.compareInventario(entity, entity2);
-        expect(inventarioService.compareInventario).toHaveBeenCalledWith(entity, entity2);
-      });
     });
   });
 });

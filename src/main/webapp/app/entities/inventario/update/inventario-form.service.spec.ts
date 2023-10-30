@@ -21,6 +21,7 @@ describe('Inventario Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             cantidadStock: expect.any(Object),
+            medicamento: expect.any(Object),
           }),
         );
       });
@@ -32,6 +33,7 @@ describe('Inventario Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             cantidadStock: expect.any(Object),
+            medicamento: expect.any(Object),
           }),
         );
       });
